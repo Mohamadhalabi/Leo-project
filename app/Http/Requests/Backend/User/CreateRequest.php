@@ -30,7 +30,7 @@ class CreateRequest extends FormRequest
             'phone' => 'required|unique:users',
             // 'country' => 'required',
             // 'city' => 'required',
-            'address' => '',
+            // 'address' => '',
 //            'state' => 'required',
 //            'street' => 'required',
             'password'=>'required|confirmed|min:4',

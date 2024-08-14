@@ -1,10 +1,6 @@
 <div class="card mt-3">
     <div class="card-body">
         @foreach([
-'is_best_seller',
-'is_saudi_branch',
-'is_featured',
-'is_free_shipping',
 'hide_price',
 'status',
 ] as $item)

@@ -65,68 +65,9 @@
 
                         </div>
 
-                        <div class="col-12 col-md-6">
-                            <div class="  mb-10">
-                                <label for="postal_code"
-                                       class="form-label  ">{{trans('backend.user.postal_code')}}</label>
-                                <input   autocomplete="off" type="text" class="form-control" id="postal_code"
-                                       name="postal_code" value="{{old('postal_code')}}"
-                                       placeholder="{{trans('backend.user.postal_code')}}"/>
-                                @error('postal_code') <b class="text-danger"><i
-                                            class="las la-exclamation-triangle"></i> {{$message}} </b> @enderror
-
-                            </div>
-                        </div>
+    
                     </div>
 
-                    <div class="row mb-10">
-                        <div class="col-12 col-md-6">
-                            <div class="form-group">
-                                <label for="country"
-                                       class="form-label">{{trans('backend.city.country_name')}}</label>
-                                <select class="form-control" id="country" name="country" data-control="select2"
-                                        data-placeholder="Select an option">
-                                    <option selected value="{{null}}"></option>
-                                    @foreach($countries as $country)
-                                        <option value="{{$country->id}}">{{$country->name}}</option>
-                                    @endforeach
-                                </select>
-                                @error('country') <b class="text-danger"><i
-                                            class="las la-exclamation-triangle"></i> {{$message}} </b> @enderror
-
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6">
-                            <div class=" ">
-                                <label for="state"
-                                       class="form-label  ">{{trans('backend.user.state')}}</label>
-                                <input   autocomplete="off" type="text" class="form-control" id="state"
-                                       name="state" value="{{old('state')}}"
-                                       placeholder="{{trans('backend.user.state')}}"/>
-                                @error('state') <b class="text-danger"><i
-                                            class="las la-exclamation-triangle"></i> {{$message}} </b> @enderror
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row mb-6">
-
-                        <div class="col-12 col-md-6">
-                            <div class="form-group">
-                                <label for="city"
-                                       class="form-label">{{trans('backend.user.city')}}</label>
-                                <input type="text" class="form-control  " name="city"  value="{{old('city')}}" id="city">
-                                <b class="text-danger" id="city_error"> </b>
-                                @error('city') <b class="text-danger"><i
-                                            class="las la-exclamation-triangle"></i> {{$message}} </b> @enderror
-
-                            </div>
-                        </div>
-
-
-                    </div>
                     <div class="row">
                         @php
                          $pass=    substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 8);    @endphp

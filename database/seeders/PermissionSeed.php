@@ -320,6 +320,14 @@ class PermissionSeed extends Seeder
         ];
         #endregion
 
+        #region notifications
+        $groups[] = [
+            'title' => 'notifications',
+            'guard' => 'admin',
+            'permission' => ['show notifications','create notification','edit notification','delete notification','change status notification']
+        ];
+        #endregion
+
         #region currency
         $groups[] = [
             'title' => 'currency',

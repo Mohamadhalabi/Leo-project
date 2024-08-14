@@ -89,7 +89,7 @@ class User extends Authenticatable implements JWTSubject
 
         $lastUserId = User::withTrashed()->select('id')->orderBy('id', 'desc')->first();
         self::creating(function ($model) use ($lastUserId) {
-            $uuid = 'TLKC' . (2200501 + ($lastUserId ?->id));
+            $uuid = 'LEO' . (2200501 + ($lastUserId ?->id));
             $model->uuid = $uuid;
             $model->verification_code =  Str::random(40);
         });
@@ -103,35 +103,6 @@ class User extends Authenticatable implements JWTSubject
                 'user' => $model,
                 'button' => trans('backend.notifications.visit_website')
             ];
-            Mail::to($model)->queue(new WelcomeMail(trans('backend.notifications.welcome'), $data));
-
-            try {
-                if (!empty($model->email) && !empty(get_setting('token_sender_email'))) {
-                    $client = new \GuzzleHttp\Client();
-                    $json = [
-                        "email" => $model->email,
-                        "firstname" => $model->name,
-                        "phone" => $model->phone,
-                        "groups" => ["API"],
-                    ];
-
-
-                    $response = $client->post(
-                        'https://api.sender.net/v2/subscribers',
-                        [
-                            'headers' => [
-                                'Authorization' => 'Bearer ' . get_setting('token_sender_email'),
-                                'Content-Type' => 'application/json',
-                                'Accept' => 'application/json',
-                            ],
-                            'json' => $json
-                        ]
-                    );
-                    $body = $response->getBody();
-                }
-            } catch (\Exception $exception) {
-
-            }
         });
     }
 
@@ -267,7 +238,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function sendEmailVerificationNotification()
     {
-         $this->notify(new VerifyUserNotification($this));
+        //  $this->notify(new VerifyUserNotification($this));
     }
 
 }

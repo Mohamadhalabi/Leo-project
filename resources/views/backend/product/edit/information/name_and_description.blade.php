@@ -57,16 +57,6 @@
                             </div>
                         </div>
                         </div>
-                        <div class="col-12 col-md-12">
-                            <div class="form-group">
-                                <label for="faq_{{$item->code}}"
-                                       class="form-label  ">{{trans('backend.product.faq')}}</label>
-                                <textarea type="text" class="form-control" name="faq_{{$item->code}}"
-                                          id="faq_{{$item->code}}">{{old('faq_'.$item->code, $product->getTranslation('faq' , $item->code))}}</textarea>
-                                <b id="error_faq_{{$item->code}}" class="text-danger"></b>
-
-                            </div>
-                        </div>
                         {!! form_seo(  $item->code , $key,$product->getTranslation('meta_title' , $item->code) , $product->getTranslation('meta_description' , $item->code)) !!}
 
                     </div>

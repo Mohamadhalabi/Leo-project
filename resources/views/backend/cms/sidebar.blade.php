@@ -24,7 +24,19 @@
                         </a>
                     </div>
                 @endif
-
         </div>
+
+        <div class="menu-sub menu-sub-accordion  ">
+                @if(permission_can('show sliders' ,'admin'))
+                    <div class="menu-item @if(request()->routeIs('backend.cms.notifications.*')   ) show @endif">
+                        <a class="menu-link" href="{{route('backend.cms.notifications.index')}}">
+												<span class="menu-bullet">
+													<span class="bullet bullet-dot"></span>
+												</span>
+                            <span class="menu-title">{{trans('backend.menu.notifications')}}</span>
+                        </a>
+                    </div>
+                @endif
+        </div>       
     </div>
 @endif

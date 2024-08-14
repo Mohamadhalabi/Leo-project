@@ -35,27 +35,7 @@
 
     </div>
 
-    <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
-        <li class="nav-item">
-            <a class="nav-link active" data-bs-toggle="tab"
-               href="#product_information">{{trans('backend.product.information')}}</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab"
-               href="#competitors">{{trans('backend.product.competitors')}}</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab"
-               href="#product_google_merchant">{{trans('backend.product.google_merchant')}}</a>
-        </li>
-        @if(permission_can('show reviews' ,'admin'))
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab"
-                   href="#product_reviews">{{trans('backend.product.reviews')}}</a>
-            </li>
-        @endif
 
-    </ul>
     <div class="tab-content" id="myTabContent">
 
         <div class="tab-pane fade   show active" id="product_information" role="tabpanel">
@@ -64,21 +44,14 @@
                 <div class="col-12 col-lg-8 col-md-8">
                     @include('backend.product.edit.information.name_and_description')
                     @include('backend.product.edit.attribute.values')
-                    @include('backend.product.edit.attribute.brand')
                     @include('backend.product.edit.price.price_renge')
-                    @include('backend.product.edit.media.videos')
-                    @include('backend.product.edit.media.pdf')
                 </div>
                 <div class="col-12 col-lg-3 col-md-3">
                     @include('backend.product.edit.information.more_information')
                     @include('backend.product.edit.attribute.checkbox')
                     @include('backend.product.edit.media.defualt_image')
-                    @include('backend.product.edit.media.secondary_image')
                     @include('backend.product.edit.media.gallery')
-                    @include('backend.product.edit.media.twitter_image')
                     @include('backend.product.edit.price.price')
-                    @include('backend.product.edit.accessories_and_bundles.accessories')
-                    @include('backend.product.edit.accessories_and_bundles.bundles')
                 </div>
             </div>
         </div>

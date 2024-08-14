@@ -94,23 +94,23 @@ class ProductController extends Controller
         $datatable_columns['sku'] = 'sku';
         $datatable_columns['title'] = 'title';
         $datatable_columns['short_title'] = 'short_title';
-        $datatable_columns['color_id'] = 'color_id';
-        $datatable_columns['manufacturer'] = 'manufacturers.title';
-        $datatable_columns['type'] = 'categories.type';
+        // $datatable_columns['color_id'] = 'color_id';
+        // $datatable_columns['manufacturer'] = 'manufacturers.title';
+        // $datatable_columns['type'] = 'categories.type';
         $datatable_columns['image'] = 'image';
         $datatable_columns['price'] = 'price';
         $datatable_columns['sale_price'] = 'sale_price';
-        $datatable_columns['quantity'] = 'quantity';
-        $datatable_columns['priority'] = 'priority';
+        // $datatable_columns['quantity'] = 'quantity';
+        // $datatable_columns['priority'] = 'priority';
         $datatable_columns['category_id'] = 'category_id';
         $datatable_columns['created_at'] = 'created_at';
         $datatable_columns['updated_at'] = 'updated_at';
         $datatable_columns['status'] = 'status';
-        $datatable_columns['is_featured'] = 'is_featured';
+        // $datatable_columns['is_featured'] = 'is_featured';
         //is best offer
-        $datatable_columns['is_super_sales'] = 'is_super_sales';
-        $datatable_columns['is_best_seller'] = 'is_best_seller';
-        $datatable_columns['is_free_shipping'] = 'is_free_shipping';
+        // $datatable_columns['is_super_sales'] = 'is_super_sales';
+        // $datatable_columns['is_best_seller'] = 'is_best_seller';
+        // $datatable_columns['is_free_shipping'] = 'is_free_shipping';
 
         $datatable_columns['actions'] = 'actions';
         #endregion
@@ -125,25 +125,17 @@ class ProductController extends Controller
         $switch_script_best_seller = $this->change_column_switch_script($switch_column, 'is_best_seller');
         $switch_script_free_shipping = $this->change_column_switch_script($switch_column, 'is_free_shipping');
 
-        $types = ['software', 'physical'];
         $categories_id = Product::query()->where('status', 1)->pluck('category_id');
         $categories = Category::query()->where('status', 1)->whereIn('id', $categories_id)->get();
-        $manufacturers = Manufacturer::query()->where('status', 1)->get();
-        $manufacturer_types = [
-            'software' => trans('backend.manufacturer.software'),
-            'token' => trans('backend.manufacturer.token'),
-        ];
+        // $manufacturers = Manufacturer::query()->where('status', 1)->get();
 
-        $brands = Brand::query()->get();
-        $models = BrandModel::query()->get();
         $create_button = '';
         if (permission_can('create product', 'admin')) {
             $create_button = $this->create_button(route('backend.products.create'), trans('backend.product.create_new_product'));
         }
         return view('backend.product.index', compact('datatable_script', 'switch_script',
             'create_button', 'switch_script_featured', 'switch_script_free_shipping', 'switch_script_super_sales',
-            'switch_script_best_seller', 'types', 'categories', 'manufacturers', 'manufacturer_types', 'brands',
-            'models'));
+            'switch_script_best_seller', 'categories'));
     }
 
     function datatable(Request $request)
@@ -166,106 +158,106 @@ class ProductController extends Controller
 //            $model->orderByDesc('id');
 //        }
 
-        if ($request->quantity) {
-            if ($request->quantity == 'empty') {
-                $model = $model->where("quantity", '<=', 0);
-            } elseif ($request->quantity == 'low') {
-                $model = $model->whereBetween("quantity", [1, get_setting('low_product_quantity_alert')]);
-            } elseif ($request->quantity == 'normal') {
-                $model = $model->where("quantity", '>', get_setting('low_product_quantity_alert'));
-            }
-        }
-        if ($request->has('status') && $request->status != -1) {
-            $model = $model->where('products.status', $request->status);
-        }
-        if ($request->has('discount_offer') && $request->discount_offer != -1) {
-            if ($request->discount_offer == 1) {
-                $model->where('products.discount_value', '>', 0.0)->orWhereHas('offers');
-            } else
-                $model->where('discount_value', 0)->WhereDoesntHave('offers');
+        // if ($request->quantity) {
+        //     if ($request->quantity == 'empty') {
+        //         $model = $model->where("quantity", '<=', 0);
+        //     } elseif ($request->quantity == 'low') {
+        //         $model = $model->whereBetween("quantity", [1, get_setting('low_product_quantity_alert')]);
+        //     } elseif ($request->quantity == 'normal') {
+        //         $model = $model->where("quantity", '>', get_setting('low_product_quantity_alert'));
+        //     }
+        // }
+        // if ($request->has('status') && $request->status != -1) {
+        //     $model = $model->where('products.status', $request->status);
+        // }
+        // if ($request->has('discount_offer') && $request->discount_offer != -1) {
+        //     if ($request->discount_offer == 1) {
+        //         $model->where('products.discount_value', '>', 0.0)->orWhereHas('offers');
+        //     } else
+        //         $model->where('discount_value', 0)->WhereDoesntHave('offers');
 
-        }
-        if ($request->has('is_free_shipping') && $request->is_free_shipping != -1) {
-            $model = $model->where('is_free_shipping', $request->is_free_shipping);
-        }
-        if ($request->has('is_today_deal') && $request->is_today_deal != -1) {
-            $model = $model->where('is_today_deal', $request->is_today_deal);
-        }
-        if ($request->has('is_best_seller') && $request->is_best_seller != -1) {
-            $model = $model->where('is_best_seller', $request->is_best_seller);
-        }
-        if ($request->has('is_super_sales') && $request->is_super_sales != -1) {
-            $model = $model->where('is_super_sales', $request->is_super_sales);
-        }
-        if ($request->has('is_visibility') && $request->is_visibility != -1) {
-            $model = $model->where('is_visibility', $request->is_visibility);
-        }
-        if ($request->has('is_featured') && $request->is_featured != -1) {
-            $model = $model->where('is_featured', $request->is_featured);
-        }
-        if ($request->has('is_bundle') && $request->is_bundle != -1) {
-            $model = $model->where('is_bundle', $request->is_bundle);
-        }
-        if ($request->has('type') && $request->type != null) {
-            $model = $model->where('type', $request->type);
-        }
-        if ($request->is_on_sale != -1) {
-            if ($request->is_on_sale == 1)
-                $model = $model->whereNotNull('sale_price');
-            if ($request->is_on_sale == 0)
-                $model = $model->whereNull('sale_price');
+        // }
+        // if ($request->has('is_free_shipping') && $request->is_free_shipping != -1) {
+        //     $model = $model->where('is_free_shipping', $request->is_free_shipping);
+        // }
+        // if ($request->has('is_today_deal') && $request->is_today_deal != -1) {
+        //     $model = $model->where('is_today_deal', $request->is_today_deal);
+        // }
+        // if ($request->has('is_best_seller') && $request->is_best_seller != -1) {
+        //     $model = $model->where('is_best_seller', $request->is_best_seller);
+        // }
+        // if ($request->has('is_super_sales') && $request->is_super_sales != -1) {
+        //     $model = $model->where('is_super_sales', $request->is_super_sales);
+        // }
+        // if ($request->has('is_visibility') && $request->is_visibility != -1) {
+        //     $model = $model->where('is_visibility', $request->is_visibility);
+        // }
+        // if ($request->has('is_featured') && $request->is_featured != -1) {
+        //     $model = $model->where('is_featured', $request->is_featured);
+        // }
+        // if ($request->has('is_bundle') && $request->is_bundle != -1) {
+        //     $model = $model->where('is_bundle', $request->is_bundle);
+        // }
+        // if ($request->has('type') && $request->type != null) {
+        //     $model = $model->where('type', $request->type);
+        // }
+        // if ($request->is_on_sale != -1) {
+        //     if ($request->is_on_sale == 1)
+        //         $model = $model->whereNotNull('sale_price');
+        //     if ($request->is_on_sale == 0)
+        //         $model = $model->whereNull('sale_price');
 
-        }
-        if ($request->is_saudi_branch != -1) {
-            $model = $model->where('is_saudi_branch', $request->is_saudi_branch);
-        }
-        if ($request->price_is_hidden != -1) {
-            $model = $model->where('hide_price', $request->price_is_hidden);
-        }
-        if ($request->min_price != null || $request->max_price != null) {
-            $model = $model->whereBetween('price', [$request->min_price ?? 0, $request->max_price ?? 10000000]);
-        }
-        if ($request->has('category') && $request->category != null) {
-            $model = $model->where('category_id', $request->category);
-        }
-        if ($request->has('manufacturer') && $request->manufacturer != null) {
-            $model = $model->where('manufacturer_id', $request->manufacturer);
-        }
-        if ($request->type != null) {
-            $model = $model->where('categories.type', $request->type);
-        }
-        if ($request->manufacturer_type != null) {
-            $model = $model->where('manufacturer_type', $request->manufacturer_type);
-        }
-        if ($request->has_serial_numbers != -1) {
-            $model = $request->has_serial_numbers == 0 ?
-                $model->having('serials_count', 0) :
-                $model->having('serials_count', '>', 0);
-        }
+        // }
+        // if ($request->is_saudi_branch != -1) {
+        //     $model = $model->where('is_saudi_branch', $request->is_saudi_branch);
+        // }
+        // if ($request->price_is_hidden != -1) {
+        //     $model = $model->where('hide_price', $request->price_is_hidden);
+        // }
+        // if ($request->min_price != null || $request->max_price != null) {
+        //     $model = $model->whereBetween('price', [$request->min_price ?? 0, $request->max_price ?? 10000000]);
+        // }
+        // if ($request->has('category') && $request->category != null) {
+        //     $model = $model->where('category_id', $request->category);
+        // }
+        // if ($request->has('manufacturer') && $request->manufacturer != null) {
+        //     $model = $model->where('manufacturer_id', $request->manufacturer);
+        // }
+        // if ($request->type != null) {
+        //     $model = $model->where('categories.type', $request->type);
+        // }
+        // if ($request->manufacturer_type != null) {
+        //     $model = $model->where('manufacturer_type', $request->manufacturer_type);
+        // }
+        // if ($request->has_serial_numbers != -1) {
+        //     $model = $request->has_serial_numbers == 0 ?
+        //         $model->having('serials_count', 0) :
+        //         $model->having('serials_count', '>', 0);
+        // }
 
-        if ($request->start_date != null) {
-            $model = $model->whereBetween('products.created_at', [\Illuminate\Support\Carbon::parse($request->start_date)->startOfDay(), Carbon::parse($request->end_date)->endOfDay()]);
-        }
-        if ($request->brand != null) {
-            $model = $model->whereHas('brands', function ($q) use ($request) {
-                $q->where('brand_id', $request->brand);
-            });
+        // if ($request->start_date != null) {
+        //     $model = $model->whereBetween('products.created_at', [\Illuminate\Support\Carbon::parse($request->start_date)->startOfDay(), Carbon::parse($request->end_date)->endOfDay()]);
+        // }
+        // if ($request->brand != null) {
+        //     $model = $model->whereHas('brands', function ($q) use ($request) {
+        //         $q->where('brand_id', $request->brand);
+        //     });
 
-        }
-        if ($request->model != null) {
-            $model = $model->whereHas('brands', function ($q) use ($request) {
-                $q->where(function ($q) use ($request) {
-                    $q->where('brand_model_id', $request->model)->orWhereNull('brand_model_id');
-                });
-            });
-        }
-        if ($request->year != null) {
-            $model = $model->whereHas('brands', function ($q) use ($request) {
-                $q->where(function ($q) use ($request) {
-                    $q->where('brand_model_year_id', $request->year)->orWhereNull('brand_model_year_id');
-                });
-            });
-        }
+        // }
+        // if ($request->model != null) {
+        //     $model = $model->whereHas('brands', function ($q) use ($request) {
+        //         $q->where(function ($q) use ($request) {
+        //             $q->where('brand_model_id', $request->model)->orWhereNull('brand_model_id');
+        //         });
+        //     });
+        // }
+        // if ($request->year != null) {
+        //     $model = $model->whereHas('brands', function ($q) use ($request) {
+        //         $q->where(function ($q) use ($request) {
+        //             $q->where('brand_model_year_id', $request->year)->orWhereNull('brand_model_year_id');
+        //         });
+        //     });
+        // }
 
 
         $permission = array(
@@ -678,6 +670,7 @@ class ProductController extends Controller
         $product->meta_title = $title_meta;
         $product->meta_description = $description_meta;
         $product->meta_image = $request->meta_image;
+        $product->quantity = $request->quantity;
 
         #region bundles
         if ($request->has('bundles') && !empty($request->bundles)) {
@@ -879,11 +872,11 @@ class ProductController extends Controller
             $summary_name [$language->code] = $request->has('summary_name_' . $language->code) && !empty($request->get('summary_name_' . $language->code)) ? $request->get('summary_name_' . $language->code) : $request->get('summary_name_' . $languages[0]->code);
             $title_meta [$language->code] = $request->has('meta_title_' . $language->code) && !empty($request->get('meta_title_' . $language->code)) ? $request->get('meta_title_' . $language->code) : $request->get('meta_title_' . $languages[0]->code);
             $description_meta[$language->code] = $request->has('meta_description_' . $language->code) && !empty($request->get('meta_description_' . $language->code)) ? $request->get('meta_description_' . $language->code) : $request->get('meta_description_' . $languages[0]->code);
-            $faq[$language->code] = $request->has('faq_' . $language->code) ? $request->get('faq_' . $language->code) : $request->get('faq_' . $languages[0]->code);
+            // $faq[$language->code] = $request->has('faq_' . $language->code) ? $request->get('faq_' . $language->code) : $request->get('faq_' . $languages[0]->code);
         }
         $product->slug = $request->slug;
         $product->sku = $request->sku;
-        $product->priority = $request->priority;
+        $product->priority = $request->quantity;
         $product->category_id = $request->category;
         $product->image = $request->image;
         $product->twitter_image = $request->has('twitter_image') ? $request->twitter_image : "";

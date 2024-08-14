@@ -43,35 +43,35 @@ class UpdateRequest extends FormRequest
                 $rules['discount_value'] = 'required|numeric|max:' . (request('sale_price') != null ? request('sale_price') : request('price'));
             }
         }
-        $years_to = $this->get('years_to');
-        $years_from = $this->get('years_from');
+        // $years_to = $this->get('years_to');
+        // $years_from = $this->get('years_from');
 
-        $rules['years_to.*'] = [function ($attribute, $value, $fail) use ($years_from, $years_to) {
-            $index = array_search($value, $years_to);
-            if ($years_from[$index] != null && $value == '')
-//            dd($years_from[$index] != null && $value == '');
-                $fail(trans('validation.year_required', ['attribute' => $attribute]));
+//         $rules['years_to.*'] = [function ($attribute, $value, $fail) use ($years_from, $years_to) {
+//             $index = array_search($value, $years_to);
+//             if ($years_from[$index] != null && $value == '')
+// //            dd($years_from[$index] != null && $value == '');
+//                 $fail(trans('validation.year_required', ['attribute' => $attribute]));
 
-        },
-            function ($attribute, $value, $fail) use ($years_from, $years_to) {
-                $index = array_search($value, $years_to);
+//         },
+//             function ($attribute, $value, $fail) use ($years_from, $years_to) {
+//                 $index = array_search($value, $years_to);
 
-                $from = BrandModelYear::find($years_from[$index])?->year;
-                $to = BrandModelYear::find($value)?->year;
-                if ($from > $to) {
-                    $fail(trans('backend.validation.year_is_small', ['attribute' => $attribute, 'year' => $from]));
-                }
-            }
-        ];
+//                 $from = BrandModelYear::find($years_from[$index])?->year;
+//                 $to = BrandModelYear::find($value)?->year;
+//                 if ($from > $to) {
+//                     $fail(trans('backend.validation.year_is_small', ['attribute' => $attribute, 'year' => $from]));
+//                 }
+//             }
+//         ];
         $rules['slug'] = 'required|unique:products,slug,' . request()->segment(3);
-        $rules['priority'] = 'required';
+        // $rules['priority'] = 'required';
         $rules['category'] = 'required';
         $rules['image'] = 'required';
         $rules['price'] = 'required';
-        if (request()->has('weight')) {
-            $rules['weight'] = 'required';
+        // if (request()->has('weight')) {
+        //     $rules['weight'] = 'required';
 
-        }
+        // }
         $rules['sku'] = 'required|unique:products,sku,' . request()->segment(3);
 //        $rules['quantity'] = 'required';
 

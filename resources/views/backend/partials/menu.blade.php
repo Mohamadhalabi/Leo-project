@@ -13,7 +13,6 @@
             @include('backend.category.sidebar')
             @include('backend.attribute.sidebar')
             @include('backend.media.sidebar')
-            @include('backend.manufacturer.sidebar')
             @include('backend.product.sidebar')
             @include('backend.coupon.sidebar')
             @include('backend.currency.sidebar')
@@ -21,7 +20,6 @@
                 <h4 class="menu-content text-muted mb-0 fs-7 text-uppercase">{{trans('backend.menu.orders')}}</h4>
             </div>
             @include('backend.order.sidebar')
-            @include('backend.offer.sidebar')
             <div class="menu-item">
                 <h4 class="menu-content text-muted mb-0 fs-7 text-uppercase">General</h4>
             </div>

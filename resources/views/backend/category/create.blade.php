@@ -53,8 +53,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                {!! form_seo($item->code , $key ,old('meta_title_'.$item->code),old('meta_description_'.$item->code)) !!}
-
                             </div>
                         @endforeach
 
@@ -75,41 +73,6 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col form-group ">
-                            <label class="form-label"
-                                   for="parent">{{trans('backend.category.parent')}}</label>
-                            <select class="form-control parent" data-placeholder="{{trans('backend.category.parent')}}" data-control="select2" name="parent" id="parent">
-                                <option selected value="0">{{trans('backend.category.parent')}}</option>
-                                {!! \App\Models\Category::select2(old('parent') ,0,0) !!}
-                            </select>
-                            @error('parent')<b class="text-danger"> <i
-                                    class="las la-exclamation-triangle"></i> {{$message}}</b>@enderror
-
-                        </div>
-                        <div class="col form-group " id="category_type">
-                            <label class="form-label" for="type">{{trans('backend.category.type')}}</label>
-                            <select class="form-control  " data-control="select2" name="type" id="type">
-
-                                <option
-                                    value="physical" {{old('type')== 'physical'? "selected":""}}>{{trans('backend.category.physical')}}</option>
-                                <option
-                                    value="software" {{old('type')== 'software'? "selected":""}}>{{trans('backend.category.software')}}</option>
-
-                            </select>
-                            @error('type')<b class="text-danger"> <i
-                                    class="las la-exclamation-triangle"></i> {{$message}}</b>@enderror
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col form-group ">
-                            <label class="form-label" for="banner">{{trans('backend.category.form_banner')}}</label>
-                            <br>
-                            {!! single_image('banner' , media_file(old('banner')) , old('banner')  ,'image',[  'width'=>1200 , 'height'=>300] ) !!}
-                            <br>
-                            @error('banner')<b class="text-danger"> <i
-                                    class="las la-exclamation-triangle"></i> {{$message}}</b>@enderror
-                        </div>
                         <div class="col form-group ">
                             <label class="form-label" for="icon">{{trans('backend.category.form_icon')}}</label>
                             <br>

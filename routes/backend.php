@@ -326,8 +326,14 @@ Route::group(['prefix' => 'cms', 'as' => 'cms.'], function () {
     Route::post('sliders/datatable', [\App\Http\Controllers\Backend\SliderController::class, 'datatable'])->name('sliders.datatable');
     Route::post('sliders/change/status', [\App\Http\Controllers\Backend\SliderController::class, 'change_status'])->name('sliders.change.status');
     Route::post('sliders/delete-selected', [\App\Http\Controllers\Backend\SliderController::class, 'delete_selected_items'])->name('sliders.delete-selected');
-
     #endregion
+     #region slider
+     Route::resource('notifications', \App\Http\Controllers\Backend\NotificationsController::class)->except(['show']);
+     Route::post('notifications/datatable', [\App\Http\Controllers\Backend\NotificationsController::class, 'datatable'])->name('notifications.datatable');
+     Route::post('notifications/change/status', [\App\Http\Controllers\Backend\NotificationsController::class, 'change_status'])->name('notifications.change.status');
+     Route::post('notifications/delete-selected', [\App\Http\Controllers\Backend\NotificationsController::class, 'delete_selected_items'])->name('notifications.delete-selected');
+     #endregion   
+
 
 
 });

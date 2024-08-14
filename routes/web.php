@@ -40,13 +40,13 @@ Route::group(['middleware' => ['web', 'is.not.admin'], 'prefix' => 'admin', 'as'
 
 #region seller
 Route::group(['middleware' => ['web', "is.not.seller"], 'prefix' => 'seller', 'as' => 'seller.'], function () {
-    Route::get('login', [App\Http\Controllers\Seller\Auth\LoginController::class, 'showLoginForm'])->name('login');
-    Route::post('login', [App\Http\Controllers\Seller\Auth\LoginController::class, 'login'])->name('login');
-    Route::get('password/rest', [App\Http\Controllers\Seller\Auth\ForgotPasswordController::class, 'getEmail'])->name('password.reset');
-    Route::post('password/rest', [App\Http\Controllers\Seller\Auth\ForgotPasswordController::class, 'postEmail'])->name('password.email');
-    Route::post('password/resend', [App\Http\Controllers\Seller\Auth\ForgotPasswordController::class, 'postEmail'])->name('password.resend');
-    Route::get('/reset-password/{token}', [App\Http\Controllers\Seller\Auth\ResetPasswordController::class, 'getPassword'])->name('password.request');
-    Route::post('/reset-password', [App\Http\Controllers\Seller\Auth\ResetPasswordController::class, 'updatePassword'])->name('resetPassword');
+    // Route::get('login', [App\Http\Controllers\Seller\Auth\LoginController::class, 'showLoginForm'])->name('login');
+    // Route::post('login', [App\Http\Controllers\Seller\Auth\LoginController::class, 'login'])->name('login');
+    // Route::get('password/rest', [App\Http\Controllers\Seller\Auth\ForgotPasswordController::class, 'getEmail'])->name('password.reset');
+    // Route::post('password/rest', [App\Http\Controllers\Seller\Auth\ForgotPasswordController::class, 'postEmail'])->name('password.email');
+    // Route::post('password/resend', [App\Http\Controllers\Seller\Auth\ForgotPasswordController::class, 'postEmail'])->name('password.resend');
+    // Route::get('/reset-password/{token}', [App\Http\Controllers\Seller\Auth\ResetPasswordController::class, 'getPassword'])->name('password.request');
+    // Route::post('/reset-password', [App\Http\Controllers\Seller\Auth\ResetPasswordController::class, 'updatePassword'])->name('resetPassword');
 });
 
 #endregion

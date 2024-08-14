@@ -17,13 +17,13 @@ class IsSeller
     public function handle(Request $request, Closure $next)
     {
 
-        if  (auth('seller')->check()  && auth('seller')->user()->status == 1  )
-        {
-            return $next($request);
-        }
-        if (auth('seller')->check()){
-            auth('seller')->logout();
-        }
-        return  redirect()->route('seller.login');
+        // if  (auth('seller')->check()  && auth('seller')->user()->status == 1  )
+        // {
+        //     return $next($request);
+        // }
+        // if (auth('seller')->check()){
+        //     auth('seller')->logout();
+        // }
+        return  redirect()->route('backend.login');
     }
 }

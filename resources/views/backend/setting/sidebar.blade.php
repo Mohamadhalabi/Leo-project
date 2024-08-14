@@ -19,6 +19,17 @@
 										<span class="menu-arrow"></span>
 									</span>
         <div class="menu-sub menu-sub-accordion  ">
+            @if(permission_can('setting website' ,'admin'))
+                <div class="menu-item @if(request()->routeIs('backend.setting.index')   ) show @endif">
+                    <a class="menu-link" href="{{route('backend.setting.index')}}">
+												<span class="menu-bullet">
+													<span class="bullet bullet-dot"></span>
+												</span>
+                        <span class="menu-title">{{trans('backend.setting.website')}}</span>
+                    </a>
+                </div>
+            @endif
+
             @if(permission_can('setting smtp' ,'admin'))
                 <div class="menu-item @if(request()->routeIs('backend.setting.smtp')   ) show @endif">
 
@@ -42,28 +53,32 @@
                     </a>
                 </div>
             @endif
-            @if(permission_can('setting payment' ,'admin'))
-                <div class="menu-item @if(request()->routeIs('backend.setting.payment')   ) show @endif">
 
-                    <a class="menu-link" href="{{route('backend.setting.payment')}}">
+            @if(permission_can('setting social' ,'admin'))
+                <div class="menu-item @if(request()->routeIs('backend.setting.social')   ) show @endif">
+
+                    <a class="menu-link" href="{{route('backend.setting.social')}}">
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-                        <span class="menu-title">{{trans('backend.setting.payment')}}</span>
+                        <span class="menu-title">{{trans('backend.setting.social.social')}}</span>
                     </a>
                 </div>
             @endif
-{{--            @if(permission_can('setting default_images' ,'admin'))--}}
-{{--                <div class="menu-item @if(request()->routeIs('backend.setting.default_images')   ) show @endif">--}}
 
-{{--                    <a class="menu-link" href="{{route('backend.setting.default_images')}}">--}}
-{{--												<span class="menu-bullet">--}}
-{{--													<span class="bullet bullet-dot"></span>--}}
-{{--												</span>--}}
-{{--                        <span class="menu-title">{{trans('backend.setting.default_images')}}</span>--}}
-{{--                    </a>--}}
-{{--                </div>--}}
-{{--            @endif--}}
+            @if(permission_can('setting contact' ,'admin'))
+                <div class="menu-item @if(request()->routeIs('backend.setting.contact')   ) show @endif">
+
+                    <a class="menu-link" href="{{route('backend.setting.contact')}}">
+												<span class="menu-bullet">
+													<span class="bullet bullet-dot"></span>
+												</span>
+                        <span class="menu-title">{{trans('backend.setting.social.contact')}}</span>
+                    </a>
+                </div>
+            @endif
+
+
 
         </div>
         @if(permission_can('setting translate' ,'admin'))
@@ -81,18 +96,6 @@
 
 
         </div>
-        @endif
-        @if(permission_can('setting notifications', 'admin'))
-            <div class="menu-sub menu-sub-accordion  ">
-                <div class="menu-item @if(request()->routeIs('backend.setting.notifications')   ) show @endif">
-                    <a class="menu-link" href="{{route('backend.setting.notifications')}}">
-												<span class="menu-bullet">
-													<span class="bullet bullet-dot"></span>
-												</span>
-                        <span class="menu-title">{{trans('backend.setting.notifications')}}</span>
-                    </a>
-                </div>
-            </div>
         @endif
     </div>
 @endif

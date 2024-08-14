@@ -32,8 +32,8 @@ class UpdateRequest extends FormRequest
             'email' => 'required|email|unique:users,email,'.request()->segment(3),
             'phone' => 'required|unique:users,phone,'.request()->segment(3),
 //            'state' => '',
-            'street' => '',
-            'seller' => 'nullable|exists:sellers,id',
+            // 'street' => '',
+            // 'seller' => 'nullable|exists:sellers,id',
             'password'=>'nullable|confirmed|min:4',
         ];
     }

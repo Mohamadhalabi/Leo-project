@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
-use     App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\Shared\ChangeStatusRequest;
 use App\Http\Requests\Backend\User\CreateRequest;
 use App\Http\Requests\Backend\User\UpdateRequest;

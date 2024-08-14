@@ -57,16 +57,6 @@
                                         class="las la-exclamation-triangle"></i> {{$message}} @enderror</b>
                             </div>
                         </div>
-                        <div class="col-12 col-md-12">
-                            <div class="form-group">
-                                <label class="form-label"  for="faq_{{$item->code}}"
-                                       class="form-label  ">{{trans('backend.product.faq')}}</label>
-                                <textarea type="text" class="form-control" name="faq_{{$item->code}}"
-                                          id="faq_{{$item->code}}">{{old('faq_'.$item->code)}}</textarea>
-                                <b id="error_faq_{{$item->code}}" class="text-danger"></b>
-
-                            </div>
-                        </div>
                         {!! form_seo($item->code , $key ,old('meta_title_'.$item->code),old('meta_description_'.$item->code)) !!}
                     </div>
 

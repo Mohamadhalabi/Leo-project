@@ -187,13 +187,6 @@
                         </li>
                         <!--end::Nav item-->
                         <!--begin::Nav item-->
-                        @if(permission_can('show user addresses', 'admin'))
-                            <li class="nav-item mt-2">
-                                <button class="nav-link text-active-primary ms-0 me-10 bg-white py-5 tab-btn"
-                                        id="addresses" data-route="{{route('backend.users.addresses', [$user->id])}}"
-                                >{{trans('backend.user.addresses')}}</button>
-                            </li>
-                        @endif
                     <!--end::Nav item-->
                         <!--begin::Nav item-->
                         @if(permission_can('show tickets', 'admin'))

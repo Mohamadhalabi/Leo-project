@@ -14,6 +14,7 @@ use App\Http\Requests\Backend\Setting\ProductRequest;
 use App\Http\Requests\Backend\Setting\ShippingRequest;
 use App\Http\Requests\Backend\Setting\SMTPRequest;
 use App\Http\Requests\Backend\Setting\SocialRequest;
+use Illuminate\Http\Request;
 use App\Models\Country;
 use App\Models\Review;
 use Config;
@@ -29,7 +30,7 @@ class SettingController extends Controller
         return view('backend.setting.index', compact('timezones'));
     }
 
-    function update(EditSetting $request)
+    function update(Request $request)
     {
         $system_name =[];
         $excepted_keys[] = 'token';

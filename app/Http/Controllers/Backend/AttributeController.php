@@ -32,7 +32,7 @@ class AttributeController extends Controller
         $datatable_columns['placeholder'] = '';
         $datatable_columns['id'] = 'id';
         $datatable_columns['name'] = 'name';
-        $datatable_columns['image'] = 'image';
+        // $datatable_columns['image'] = 'image';
         $datatable_columns['created_at'] = 'created_at';
         $datatable_columns['updated_at'] = 'updated_at';
         $datatable_columns['status'] = 'status';
