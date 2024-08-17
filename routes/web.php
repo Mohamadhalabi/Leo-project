@@ -50,7 +50,7 @@ Route::group(['middleware' => ['web', "is.not.seller"], 'prefix' => 'seller', 'a
 });
 
 #endregion
-Route::get('verification/verify', [\App\Http\Controllers\Frontend\AuthController::class, 'email_verify'])->name('verification.verify');
+// Route::get('verification/verify', [\App\Http\Controllers\Frontend\AuthController::class, 'email_verify'])->name('verification.verify');
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('auth/google', [\App\Http\Controllers\Api\Frontend\User\Auth\AuthController::class, 'redirectToGoogle'])->name('google-login');

@@ -100,6 +100,11 @@ class PermissionSeed extends Seeder
             'permission' => ['setting payment', 'paypal update', 'strip update']
         ];
         #endregion
+        $groups[] = [
+            'title' => 'setting payment_methods',
+            'guard' => 'admin',
+            'permission' => ['setting payment_methods']
+        ];
 
         #region manage location
         $groups[] = [

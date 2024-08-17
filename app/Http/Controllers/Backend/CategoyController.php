@@ -165,7 +165,7 @@ class CategoyController extends Controller
         // }
         
         $category->banner = $request->banner;
-        $category->icon = $request->icon;
+        $category->icon = $request->category_icon;
         $category->meta_title = $meta_title;
         $category->meta_description = $meta_description;
         $category->status = $request->has('status') ? 1 : 0;
@@ -207,7 +207,7 @@ class CategoyController extends Controller
         $category->slug = $request->slug;
 
         $category->banner = $request->banner;
-        $category->icon = $request->icon;
+        $category->icon = $request->category_icon;
         $category->meta_title = $meta_title;
         $category->meta_description = $meta_description;
         $category->status = $request->has('status') ? 1 : 0;

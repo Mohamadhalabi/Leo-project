@@ -619,7 +619,7 @@ class ProductController extends Controller
         $product->weight = $request->weight;
         $product->priority = $request->priority;
         $product->category_id = $request->category;
-        $product->image = $request->image;
+        $product->image = $request->product_image;
         $product->secondary_image = $request->has('secondary_image') ? $request->secondary_image : "";
         $product->twitter_image = $request->has('twitter_image') ? $request->twitter_image : "";
         $product->gallery = $request->has('gallery') ? $request->gallery : null;
@@ -1576,7 +1576,7 @@ class ProductController extends Controller
         }
         $sub_attribute->attribute_id = $request->attr_id;
         $sub_attribute->value = $values;
-        $sub_attribute->image = $request->has("image") ? $request->get("image") : "";;
+        $sub_attribute->image = $request->has("product_image") ? $request->get("product_image") : "";;
         $sub_attribute->status = 1;
         $sub_attribute->slug = preg_replace('/\s+/', '_', $request->get("sub_attr__en")) . '_' . time();
         $sub_attribute->save();

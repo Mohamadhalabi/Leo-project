@@ -97,5 +97,23 @@
 
         </div>
         @endif
+
+        @if(permission_can('setting payment_methods' ,'admin'))
+        <div class="menu-sub menu-sub-accordion  ">
+
+                <div class="menu-item @if(request()->routeIs('backend.setting.payment-methods.*')   ) show @endif">
+
+                    <a class="menu-link" href="{{route('backend.setting.payment-methods.index')}}">
+												<span class="menu-bullet">
+													<span class="bullet bullet-dot"></span>
+												</span>
+                        <span class="menu-title">Payment methods</span>
+                    </a>
+                </div>
+
+
+        </div>
+        @endif
+
     </div>
 @endif

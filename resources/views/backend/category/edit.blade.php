@@ -76,7 +76,7 @@
                     <div class="col form-group ">
                         <label class="form-label" for="icon">{{trans('backend.category.form_icon')}}</label>
                         <br>
-                        {!! single_image('icon' , media_file(old('icon', $category->icon)) , old('icon', $category->icon)  ) !!}
+                        {!! single_image('category_icon' , media_file(old('category_icon', $category->icon)) , old('icon', $category->icon)  ) !!}
                         <br>
                         @error('icon')<b class="text-danger"> <i
                                     class="las la-exclamation-triangle"></i> {{$message}}</b>@enderror

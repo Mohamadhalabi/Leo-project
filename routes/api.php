@@ -114,7 +114,7 @@ Route::group(['as' => 'downloads.', 'prefix' => 'downloads'], function () {
 
 #region cities
 Route::group(['as' => 'cities.', 'prefix' => 'cities'], function () {
-    Route::get('{country}', [\App\Http\Controllers\Api\Frontend\CityController::class, 'cities'])->name('cities');
+    // Route::get('{country}', [\App\Http\Controllers\Api\Frontend\CityController::class, 'cities'])->name('cities');
 });
 #endregion
 

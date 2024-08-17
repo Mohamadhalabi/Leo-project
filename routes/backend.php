@@ -135,6 +135,16 @@ Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
     Route::get('notifications', [\App\Http\Controllers\Backend\SettingController::class, 'notifications'])->name('notifications');
     Route::post('notifications', [\App\Http\Controllers\Backend\SettingController::class, 'update_notifications'])->name('notifications.update');
     #endregion
+
+    #region payment methods
+    Route::resource('payment-methods', \App\Http\Controllers\Backend\PaymentMethodsController::class, ['except' => 'show']);
+    Route::group(['as' => 'payment-methods.', 'prefix' => 'payment-methods'], function () {
+        Route::post('datatable', [\App\Http\Controllers\Backend\PaymentMethodsController::class, 'datatable'])->name('datatable');
+        Route::post('change/status', [\App\Http\Controllers\Backend\PaymentMethodsController::class, 'change_status'])->name('change.status');
+        Route::post('delete-selected', [\App\Http\Controllers\Backend\PaymentMethodsController::class, 'delete_selected_items'])->name('delete-selected');
+    
+    });
+    #end region
 });
 #endregion
 
@@ -419,6 +429,16 @@ Route::get('/esg-clear', function () {
 });
 #endregion
 
+#region rank system
+Route::resource('ranks', \App\Http\Controllers\Backend\RankController::class, ['except' => 'show']);
+Route::group(['prefix' => 'ranks', 'as' => 'ranks.'], function () {
+    Route::post('datatable', [\App\Http\Controllers\Backend\RankController::class, 'datatable'])->name('datatable');
+    Route::post('delete-selected', [\App\Http\Controllers\Backend\RankController::class, 'delete_selected_items'])->name('delete-selected');
+    Route::post('change/status', [\App\Http\Controllers\Backend\RankController::class, 'change_status'])->name('change.status');
+
+});
+#endregion
+
 #region product
 Route::resource('products', \App\Http\Controllers\Backend\ProductController::class, ['except' => 'show']);
 Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
@@ -450,7 +470,6 @@ Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
     Route::post('get-quantity', [\App\Http\Controllers\Backend\ProductController::class, 'get_quantity'])->name('get-quantity');
     Route::post('calculate-shipping-cost', [\App\Http\Controllers\Backend\ProductController::class, 'calculate_shipping_cost'])->name('calculate-shipping-cost');
 #endregion
-
 });
 #endregion
 

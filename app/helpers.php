@@ -69,8 +69,19 @@ if (!function_exists('single_image')) {
         if (get_setting('watermark_status') != 1) {
             $water_mark = 'false';
         }
+
         $height = 600;
         $width = 600;
+        if($name == "category_icon"){
+            $height = 300;
+            $width = 300;
+        }
+
+        if($name == "product_image"){
+            $width = 600;
+            $height = 600;
+        }
+
         if (isset($option['height']) && !empty($option['height'])) {
             $height = $option['height'];
         }

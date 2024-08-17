@@ -66,7 +66,7 @@ class UpdateRequest extends FormRequest
         $rules['slug'] = 'required|unique:products,slug,' . request()->segment(3);
         // $rules['priority'] = 'required';
         $rules['category'] = 'required';
-        $rules['image'] = 'required';
+        $rules['product_image'] = 'required';
         $rules['price'] = 'required';
         // if (request()->has('weight')) {
         //     $rules['weight'] = 'required';

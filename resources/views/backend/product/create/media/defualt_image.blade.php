@@ -6,7 +6,7 @@
             </div>
         </div>
         <div class="card-body text-center pt-0">
-            {!! single_image('image' , media_file(old('image') ), old('image'), 'image',['watermark'=>'no' ]) !!}
+            {!! single_image('product_image' , media_file(old('product_image') ), old('product_image'), 'product_image',['watermark'=>'no' ]) !!}
             <br>
             <b class="text-danger" id="error_image">    @error('image'){{ $message }}@enderror</b>
         </div>
