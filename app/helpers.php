@@ -82,6 +82,11 @@ if (!function_exists('single_image')) {
             $height = 600;
         }
 
+        if($name =="system_logo_icon"){
+            $width = 32;
+            $height = 32; 
+        }
+
         if (isset($option['height']) && !empty($option['height'])) {
             $height = $option['height'];
         }

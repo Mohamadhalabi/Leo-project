@@ -72,9 +72,10 @@
                             </b>
                         </div>
                     </div>
+                    <br>
                     <div class="row">
                         <div class="col form-group ">
-                            <label class="form-label" for="icon">{{trans('backend.category.form_icon')}}</label>
+                            <label class="form-label" for="icon">200x200</label>
                             <br>
                             {!! single_image('category_icon' , media_file(old('category_icon')) , old('category_icon')  ) !!}
                             <br>

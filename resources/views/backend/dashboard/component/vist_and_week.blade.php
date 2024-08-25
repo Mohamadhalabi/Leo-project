@@ -17,12 +17,12 @@
 <div class="col-12 col-md-6 col-xl-3     col-lg-6 col-xl-3  ">
     <div class="card card-flush">
         <div class="card-header ">
-            <h3  class="card-title"> {{trans('backend.dashboard.seller_earning')}}
+            <h3  class="card-title"> 
                 <sub>
                     (  {{trans('backend.dashboard.seller_earning_date',['from'=> \Carbon\Carbon::now()->startOfMonth()->format('y/m/d'), 'to' =>\Carbon\Carbon::now()->format('y/m/d')])}} ) </sub>
             </h3>
         </div>
-        <div class="card-body">
+        <div class="card-body p-0">
             <div id="seller_charts_widget_"  ></div>
         </div>
     </div>

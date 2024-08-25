@@ -104,16 +104,15 @@ trait ProductTrait
         return response()->data(['status' => false]);
     }
 
-
-    function generate_sku_code($i = 1)
+    function generate_sku_code()
     {
-
-        $sku = "TL" . (Product::withTrashed()->max('id') + $i);
-        $check = Product::withTrashed()->where('sku', $sku)->count();
-        if ($check == 0) {
-            return $sku;
-        }
-        return $this->generate_sku_code($i + 1);
+        do {
+            $randomNumber = rand(1000, 9000);
+            $sku = "TL" . $randomNumber;
+            $check = Product::withTrashed()->where('sku', $sku)->count();
+        } while ($check > 0);
+    
+        return $sku;
     }
 
     public function api_calculate_cart_coupon(Coupon $coupon, Currency $currency, $country = null)

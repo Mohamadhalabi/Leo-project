@@ -1,4 +1,4 @@
-<div class="col-md-6  col-lg-4 col-xl-3 col-md-6 col-12">
+<div class="col-md-6  col-lg-5 col-xl-5 col-md-6 col-12">
     <!--begin::Mixed Widget 1-->
     <div class="card card-xl-stretch mb-xl-8">
         <!--begin::Body-->

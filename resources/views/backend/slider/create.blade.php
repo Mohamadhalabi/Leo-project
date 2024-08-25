@@ -42,10 +42,13 @@
                                         </div>
                                     </div>
                                 </div>
+                                <br><br>
+                                1800x454
                                 <div class="row">
                                     <div class="col form-group ">
+                                        
 
-                                        {!! single_image('image_'.$language->code , media_file(old('image_'.$language->code)) , old('image_'.$language->code) , 'image' , ['width'=>835 ,'height'=>445 , 'watermark'=>'no']  ) !!}
+                                        {!! single_image('image_'.$language->code , media_file(old('image_'.$language->code)) , old('image_'.$language->code) , 'image' , ['width'=>1800 ,'height'=>454 , 'watermark'=>'no']  ) !!}
                                         @error('image_'.$language->code)<b class="text-danger"> <i
                                                 class="las la-exclamation-triangle"></i> {{$message}}</b>@enderror
                                     </div>

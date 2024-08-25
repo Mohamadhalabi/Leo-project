@@ -23,7 +23,7 @@ return new class extends Migration
             $table->boolean('is_special_price')->default(false);
             $table->boolean('is_coupon')->default(false);
             $table->integer('discount_value')->nullabe();
-            $table->coupon_value('discount_value')->nullable();
+            // $table->coupon_value('discount_value')->nullable();
             $table->timestamps();
         });
     }

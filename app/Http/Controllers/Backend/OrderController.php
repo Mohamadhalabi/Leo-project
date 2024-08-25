@@ -20,6 +20,7 @@ use App\Models\OrdersProducts;
 use App\Models\Product;
 use App\Models\ProductsPackages;
 use App\Models\ProductsSerialNumber;
+use App\Models\PaymentMethods;
 use App\Models\Seller;
 use App\Models\User;
 use App\Models\UserWallet;
@@ -88,7 +89,8 @@ class OrderController extends Controller
         $sellers_ids = Order::pluck('seller_id');
         $sellers = Seller::whereIn('id', $sellers_ids)
             ->whereNull('deleted_at')->get();
-        $payment_methods = Order::payment_methods();
+        $payment_methods = PaymentMethods::query()->where('status',1)->pluck('name')->toArray();
+
         $payment_statuses = Order::payment_statuses();
 
         $products_ids = OrdersProducts::groupBy('product_id')->pluck('product_id');

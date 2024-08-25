@@ -30,8 +30,6 @@
                                     <th style="text-align: center"><input type="checkbox" id="select_all"/></th>
                                     <th>{{trans('backend.global.id')}}</th>
                                     <th>{{trans('backend.category.name')}}</th>
-                                    <th>{{trans('backend.category.products_count')}}</th>
-
                                     <th>{{trans('backend.global.created_at')}}</th>
                                     <th>{{trans('backend.global.updated_at')}} </th>
                                     <th>{{trans('backend.global.status')}}</th>

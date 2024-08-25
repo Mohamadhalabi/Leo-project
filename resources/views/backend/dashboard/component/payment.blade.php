@@ -3,7 +3,7 @@
     <div class="card card-flush h-xl-100">
         <div class="card-header pt-7">
             <h4 class="card-title align-items-start flex-column">
-                <span class="card-label fw-bolder text-gray-800">{{trans('backend.dashboard.pending_payment')}}</span>
+                <span class="card-label fw-bolder text-gray-800">Orders</span>
             </h4>
         </div>
         <div class="card-body py-3">

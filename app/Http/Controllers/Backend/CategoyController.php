@@ -42,7 +42,6 @@ class CategoyController extends Controller
         $datatable_columns['name'] = 'name';
         // $datatable_columns['parent_id'] = 'parent_id';
         // $datatable_columns['type'] = 'type';
-        $datatable_columns['products_count'] = 'products_count';
         $datatable_columns['created_at'] = 'created_at';
         $datatable_columns['updated_at'] = 'updated_at';
         $datatable_columns['status'] = 'status';

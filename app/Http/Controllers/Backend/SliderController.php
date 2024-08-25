@@ -108,7 +108,6 @@ class SliderController extends Controller
         Slider::create([
             'image' => $image,
             'link' => $link,
-            'type' => $request->type,
             'status'=> $request->status?1:0]);
 
         return redirect()->route('backend.cms.sliders.index')->with('success', trans('backend.global.success_message.created_successfully'));
@@ -137,7 +136,6 @@ class SliderController extends Controller
         $slider->update([
             'image' => $image,
             'link' => $link,
-            'type' => $request->type,
             'status'=> $request->status?1:0]);
 
         return redirect()->route('backend.cms.sliders.index')->with('success', trans('backend.global.success_message.updated_successfully'));

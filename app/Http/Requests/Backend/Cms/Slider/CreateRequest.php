@@ -31,7 +31,7 @@ class CreateRequest extends FormRequest
                 $rules['link_'.$language->code] = 'required';
             }
             $rules['status'] ='';
-            $rules['type'] =['required', Rule::in(['main', 'banner'])];
+            // $rules['type'] =['required', Rule::in(['main', 'banner'])];
         }
         return $rules;
     }

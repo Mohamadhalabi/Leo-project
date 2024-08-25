@@ -548,15 +548,11 @@ class UserController extends Controller
         $datatable_columns = [];
         $datatable_columns['id'] = 'id';
         $datatable_columns['uuid'] = 'uuid';
-        $datatable_columns['seller'] = 'sellers.name';
         $datatable_columns['payment_method'] = 'payment_method';
         $datatable_columns['payment_status'] = 'payment_status';
         $datatable_columns['total'] = 'total';
-        $datatable_columns['shipping'] = 'shipping';
         $datatable_columns['status'] = 'status';
-        $datatable_columns['coupon'] = 'coupon_value';
         $datatable_columns['type'] = 'type';
-        $datatable_columns['tracking_number'] = 'tracking_number';
         $datatable_columns['created_at'] = 'created_at';
         $datatable_columns['actions'] = 'actions';
 
