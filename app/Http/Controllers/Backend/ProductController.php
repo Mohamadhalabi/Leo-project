@@ -900,7 +900,7 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->sale_price = $request->has('sale_price') && !empty($request->sale_price) ? $request->sale_price : null;
 
-        $product->quantity = 0;
+        $product->quantity = $request->quantity;
         $product->discount_type = $request->discount_type;
         $product->discount_value = ((empty($request->discount_value)) ? 0 : $request->discount_value);
         if ($request->date_type == 'for_ever') {

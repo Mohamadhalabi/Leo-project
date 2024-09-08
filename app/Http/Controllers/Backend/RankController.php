@@ -264,7 +264,7 @@ class RankController extends Controller
                 return $actions;
             })
             ->editColumn('image', function ($q) use ($default_images) {
-                return '<img width="75px" onerror="this.src=' . "'" . $default_images . "'" . '" src="' . media_file($q->image) . '">';
+                return '<img width="75px" onerror="this.src=' . "'" . $default_images . "'" . '" src="' . media_file($q->icon) . '">';
             })
 
 

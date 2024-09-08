@@ -82,6 +82,27 @@
                                     class="las la-exclamation-triangle"></i> {{$message}}</b>@enderror
                     </div>
                 </div>
+                <br><br>
+                <div class="row">
+                
+                <div class="col form-group">
+                        <label class="form-label" for="parent">{{trans('backend.category.parent')}}</label>
+                        <select class="form-control parent" data-placeholder="{{ trans('backend.category.parent') }}" data-control="select2" name="parent" id="parent">
+                            <option value="0" @if(old('parent', $category->parent_id) == 0) selected @endif>{{ trans('backend.category.parent') }}</option>
+                            
+                            @foreach($categories as $categoryy)
+                                @if($category->id != $categoryy->id) {{-- Avoid listing the category itself --}}
+                                    <option value="{{ $categoryy->id }}" @if(old('parent', $category->parent_id) == $categoryy->id) selected @endif>
+                                        {{ $categoryy->name }}
+                                    </option>
+                                @endif
+                            @endforeach
+                        </select>
+
+                        @error('parent')<b class="text-danger"> <i class="las la-exclamation-triangle"></i> {{$message}}</b>@enderror
+                    </div>
+                </div>
+                <br>
 
                 <div class="form-group row">
                     <div class="col  align-items-center">

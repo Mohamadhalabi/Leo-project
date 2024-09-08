@@ -156,18 +156,19 @@ class CategoyController extends Controller
         $category->description = $description;
         $category->slug = $request->slug;
 
-        // if ($request->parent != 0) {
-        //     $category->parent_id = $request->parent;
-        //     $category->type = Category::find($request->parent)->type;
-        // } else {
-        //     $category->type = $request->type;
-        // }
+        if ($request->parent != 0) {
+            $category->parent_id = $request->parent;
+        }
+        else{
+            $category->parent_id = NULL;
+        }
         
         $category->banner = $request->banner;
         $category->icon = $request->category_icon;
         $category->meta_title = $meta_title;
         $category->meta_description = $meta_description;
         $category->status = $request->has('status') ? 1 : 0;
+
         $category->save();
         return redirect()->route('backend.categories.create')->with('success', trans('backend.global.success_message.created_successfully'));
 
@@ -201,9 +202,19 @@ class CategoyController extends Controller
             // $meta_title[$item->code] = $request->get('meta_title_' . $item->code);
             // $meta_description[$item->code] = $request->get('meta_description_' . $item->code);
         }
+
+
+        if($request->parent == 0){
+            $cat = NULL;
+        }
+        else{
+            $cat = $request->parent;
+        }
+
         $category->name = $name;
         $category->description = $description;
         $category->slug = $request->slug;
+        $category->parent_id = $cat;
 
         $category->banner = $request->banner;
         $category->icon = $request->category_icon;

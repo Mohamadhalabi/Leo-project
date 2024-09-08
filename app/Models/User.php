@@ -79,7 +79,9 @@ class User extends Authenticatable implements JWTSubject
         'two_factor_expires_at',
         'stripe_cust_id',
         'facebook_id',
-        'google_id'
+        'google_id',
+        'rank',
+        'allow_debt'
 
     ];
 

@@ -96,6 +96,45 @@
                             </div>
                         </div>
                     </div>
+
+
+                    <div class="row">
+                    <div class="col-12 col-sm-6 align-items-center">
+                        <div class="form-group align-items-center">
+                        <label for="rankSelect" class="form-label w-100">Select Rank</label>
+
+                            <div class="form-check form-switch form-check-custom form-check-solid me-10">
+                                <br>
+                                <select class="form-select" id="rankSelect" name="rank">
+                                <option value="NULL" selected>Select A rank</option>
+
+                                    @foreach($ranks as $rank)
+                                        <option value="{{ $rank->id }}">{{ $rank->title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+
+
+
+                    <div class="row">
+                    <div class="col-12 col-sm-12  align-items-center">
+                            <div class="form-group  align-items-center">
+                                <br>
+                                <div class="form-check form-switch form-check-custom form-check-solid me-10">
+                                    <input class="form-check-input h-20px w-30px" @if(old('allowdebt')== 1) checked
+                                            @endif type="checkbox" value="1"
+                                            name="allowdebt" id="allowdebt"/>
+                                        <label class="form-check-label" for="allowdebt">
+                                            Allow debt
+                                        </label>
+                                    </div>
+                                </div>
+                        </div>    
+                    </div>
+
                     <div class="row mb-6">
                         <div class="col-12 col-sm-6  ">
                             <div class="form-group ">

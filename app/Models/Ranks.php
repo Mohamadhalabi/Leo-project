@@ -17,5 +17,6 @@ class Ranks extends Model
         'description',
         'image',
         'status',
+        'coupon_value'
     ];
 }

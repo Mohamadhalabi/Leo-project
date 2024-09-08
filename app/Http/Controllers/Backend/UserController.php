@@ -25,6 +25,7 @@ use App\Models\Ticket;
 use App\Models\User;
 use App\Models\UserWallet;
 use App\Models\Wishlist;
+use App\Models\Ranks;
 use App\Traits\ButtonTrait;
 use App\Traits\DatatableTrait;
 
@@ -203,9 +204,10 @@ class UserController extends Controller
     #region create
     function create()
     {
+        $ranks = Ranks::where('status',1)->get();
         $countries = Country::where('status', 1)->get();
         $sellers = Seller::where('status', 1)->get();
-        return view('backend.user.create', compact('countries', 'sellers'));
+        return view('backend.user.create', compact('countries', 'sellers','ranks'));
     }
 
     public function store(CreateRequest $request)
@@ -231,6 +233,8 @@ class UserController extends Controller
         $user->address = $request->address;
         $user->password = Hash::make($request->password);
         $user->status = $request->has('status') ? 1 : 0;
+        $user->rank = $request->rank;
+        $user->allow_debt = $request->input('allowdebt', 0);
 
         $user->save();
         if (!empty($request->file('avatar'))) {
@@ -296,6 +300,8 @@ class UserController extends Controller
             $user->password = Hash::make($request->password);
         }
         $user->status = $request->has('status') ? 1 : 0;
+        $user->rank = $request->rank;
+        $user->allow_debt = $request->input('allowdebt', 0);
         $user->save();
         return redirect()->route('backend.users.show', ['user' => $user->id])->with('success', trans('backend.global.success_message.updated_successfully'));
     }
@@ -328,11 +334,12 @@ class UserController extends Controller
 
     public function overview($user_id)
     {
+        $ranks = Ranks::where('status',1)->get();
         $user = User::findOrFail($user_id);
         $countries = Country::where('status', 1)->get();
         $sellers = Seller::where('status', 1)->get();
 
-        $view = view('backend.user.data.overview', compact('user', 'countries', 'sellers'))->render();
+        $view = view('backend.user.data.overview', compact('user', 'countries', 'sellers','ranks'))->render();
         return response()->data(['view' => $view]);
     }
 
